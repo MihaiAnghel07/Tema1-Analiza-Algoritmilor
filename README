@@ -1,0 +1,48 @@
+Nume: Anghel Mihai-Gabriel
+Grupa: 323CD
+
+
+	Tema pe care o am de prezentat se refera la "2.7 Algoritmi pentru procesarea sirurilor de caractere". Concret, programul meu afla secventa
+comuna de lungime maxima a stringurilor primite ca input, folosindu-se de algoritmii: Knuth-Morris-Pratt(KMP) si Rabin-Karp(RK). Cei doi algoritmi
+au fost preluati de la adresele:
+ - KMP: https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/ 
+[ultima accesare: 2.12.2020]
+ - RK: https://www.geeksforgeeks.org/rabin-karp-algorithm-for-pattern-searching/
+[ultima accesare: 2.12.2020]
+Acestia au fost modificati astfel: in momentul in care s-a gasit pattern-ul,
+se returneaza pozitia, fara a cauta toate pozitiile la care se gaseste acesta.
+In caz contrar, se intoarce -1.
+
+
+Programul functioneaza in urmatorul mod: 
+Daca ambele fisiere de input contin stringuri, se cauta stringul de lungime 
+mai mica (pattern-ul) in stringul mai mare folosind, pe rand, KMP si RK. Daca acesta se gaseste in text, inseamna ca secventa maxima este chiar pattern-ul. Altfel, se prelucreaza pattern-ul astfel: se formeaza multimea tuturor substringurilor pattern-ului in ordine descrescatoare a lungimilor acestora(deoarece caut secventa de lungime maxima si am considerat mai eficienta aceasta abordare). Apoi, se cauta fiecare substring in text folosind
+KMP / RK. In momentul in care s-au gasit toate secventele de lungime maxima,
+algoritmul se opreste si nu mai descompune pattern-ul. 
+
+
+ - Worst case-ul algoritmului il reprezinta cazul in care stringurile nu au in  comun niciun caracter.
+ - Average case-ul este reprezentat de cazurile in care aproximativ jumatate
+din stringul de lungime mai mica se gaseste in stringul de lungime mare. 
+ - Best case-ul este atunci cand secventa de lungime maxima este chiar pattern-ul.
+(Detalierea complexitatii o voi face in etapa 3)
+Se observa ca algoritmul KMP este mai eficient si scoate timpi mai buni decat
+RK.
+
+
+**Fisierele de input:
+Programul are implementata citirea fisierelor de input. Un test de input este defapt alcatuit din 2 fisiere: cate un fisier pentru fiecare string. Singura modificare care trebuie adusa este schimbarea valorii macro-ului: NR_FISIERE 
+in functie de numarul de teste de input. Atentie! Folderul "in" va avea nevoie de 2*nr_teste fisiere de input iar macro-ul NR_FISIERE va avea valoarea : 
+NR_FISIERE = 2*nr_teste - 2
+
+
+**Fisierele de output:
+Au urmatorul format:
+----nume_algoritm_aplicat----
+secventa/secventele comuna(e) de lungime maxima
+----[timpul scos de algoritm, cu 10 zecimale]----
+
+
+**Testarea:
+Exista un Makefile. Se compileaza cu comanda "make / make build", iar pentru rulare se tasteaza "make run". Pentru clean : "make clean".
+ 	
